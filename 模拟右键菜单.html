@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				padding: 0;
+				position: absolute;
+				margin: 5px;
+				list-style: none;
+				border: 1px solid #000;
+			}
+			a{
+				text-decoration: none;
+				font-size: 30px;
+				line-height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<ul>
+			<li>打开</li>
+			<li>删除</li>
+			<li>新建</li>
+		</ul>-->
+		<script type="text/javascript">
+			document.metrigt={
+				open:'打开',
+				del:'删除',
+				add:'新建'
+			}
+			document.oncontextmenu=function(ev){
+				var l=ev.clientX;
+				var t=ev.clientY;
+				var ul=document.createElement('ul')
+				 ul.id="mer";
+				 var html='';
+				for (var key in this.metrigt) {
+					html+=`<li>
+								<a href="javjascrpt:;">${this.metrigt[key]}</a>
+								
+							</li>`
+				}
+				ul.innerHTML=html
+				ul.style.top=(t)+'px';
+				ul.style.left=l+'px';
+				if (document.querySelector('#mer')) {
+					document.body.removeChild(document.querySelector('#mer'))
+				}
+				document.body.appendChild(ul)
+				ul.onclick=function(ev){
+					ev.cancelBubble=true;
+				}
+				
+				ev.preventDefault()
+			}
+			document.body.onclick=function(ev){
+				let ul=document.querySelector('#mer')
+				document.body.removeChild(ul)
+				ev.cancelBubble=true;
+			}
+		</script>
+	</body>
+</html>
